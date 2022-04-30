@@ -19,20 +19,25 @@ namespace UI
 
         public DataGridView DataGridView 
         { 
-            get
-            {
-                return studentsDataGridView;
-            }
+            get { return studentsDataGridView; }
+        }
+
+        public SaveFileDialog SaveFileDialog 
+        {
+            get { return saveFileDialog; }
         }
 
         public event EventHandler DeleteEvent;
         public event EventHandler EditEvent;
         public event EventHandler AddEvent;
         public event EventHandler UpdateEvent;
+        public event EventHandler SaveDataEvent;
 
         public MainForm()
         {
             InitializeComponent();
+
+            saveFileDialog.Filter = "Text files(*.txt)|*.txt|Excel files(*.xlsx)| *.xlsx| All files(*.*) | *.*";
 
             studentsDataGridView.ColumnCount = 4;
             studentsDataGridView.Columns[0].HeaderText = "ФИО";
@@ -97,9 +102,9 @@ namespace UI
             _aboutForm.ShowDialog();
         }
 
-        private void filesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            SaveDataEvent.Invoke(sender, e);
         }
     }
 }

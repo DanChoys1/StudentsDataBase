@@ -23,12 +23,11 @@ namespace Presenter
             _mainForm.AddEvent += AddRecord;
             _mainForm.DeleteEvent += DeleteRecord;
             _mainForm.EditEvent += EditRecord;
+            _mainForm.SaveDataEvent += SaveRecords;
 
             _database = new StudentsDataBase("Data Source=D:\\Program\\SQLite\\Students.db");
 
             UpdateDataGridView(this, new EventArgs());
-
-            ExcelFile.Read("D:\\Учеба\\Программирование\\Сем 4\\StudentsDataBase\\StudentsDataBase\\1.xlsx", out List<List<string>> students);
         }
 
         private void UpdateDataGridView(object sender, EventArgs e)
@@ -84,6 +83,42 @@ namespace Presenter
                 _database.UpdateStudentAsync(student);
 
                 UpdateDataGridView(this, new EventArgs());
+            }
+        }
+
+        private void SaveRecords(object sender, EventArgs e)
+        {
+            System.Windows.Forms.DialogResult result = _mainForm.SaveFileDialog.ShowDialog();
+
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+                int countColumns = _mainForm.DataGridView.Columns.Count;
+                int countRows = _mainForm.DataGridView.Rows.Count;
+
+                string[,] studentData = new string[countRows, countColumns];
+
+                for (int i = 0; i < countRows; i++)
+                {
+                    for (int j = 0; j < countColumns; j++)
+                    {
+                        studentData[i, j] = _mainForm.DataGridView.Rows[i].Cells[j].Value.ToString();
+                    }
+                }
+
+                string filter = System.IO.Path.GetExtension(_mainForm.SaveFileDialog.FileName);
+
+                if (filter == ".xlsx")
+                {
+                    ExcelFile.Write(_mainForm.SaveFileDialog.FileName, studentData);
+                }
+                else if (filter == ".txt")
+                {
+                    TxtFile.Write(_mainForm.SaveFileDialog.FileName, studentData);
+                }
+                else
+                {
+                    TxtFile.Write(_mainForm.SaveFileDialog.FileName, studentData); ;
+                }
             }
         }
     }
