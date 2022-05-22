@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace UI
 {
-    internal interface IInteractionInformation
+    public interface IInteractionInformation
     {
         string StudentName { get; }
         string Course { get; }
@@ -16,5 +16,7 @@ namespace UI
 
         DialogResult ShowInteractionInformation();
         DialogResult ShowInteractionInformation(string name, int course, int group, string form);
+
+        void Clear();
     }
 }

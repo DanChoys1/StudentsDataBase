@@ -1,11 +1,11 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.Sqlite;
 
-namespace DataBase 
+namespace Database 
 {
     internal class StudentsDataBase
     {
@@ -43,6 +43,7 @@ namespace DataBase
                 {
                     while (reader.Read())
                     {
+                        Type t = reader.GetValue(0).GetType();
                         int id = reader.GetInt32(0);
                         string name = reader.GetString(1);
                         int course = reader.GetInt32(2);
@@ -127,9 +128,11 @@ namespace DataBase
             });
         }
 
+
         ~StudentsDataBase()
         {
             connection.CloseAsync().Wait();
         }
     }
 }
+*/

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using Autofac;
 using UI;
 
@@ -14,8 +15,9 @@ namespace Containers
         static ContainerRegistretion()
         {
             ContainerBuilder builder = new ContainerBuilder();
-            builder.RegisterType<IInteractionInformation>().As<InteractionInformation>();
-            builder.RegisterType<IMainForm>().As<MainForm>();
+            builder.RegisterType<InteractionInformation>().As<IInteractionInformation>();
+            builder.RegisterType<MainForm>().As<IMainForm>().As<MainForm>();
+            //builder.RegisterType<Form>();
 
             Container = builder.Build();
         }

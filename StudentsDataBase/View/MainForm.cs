@@ -2,6 +2,8 @@
 using System.Windows.Forms;
 using Presenter;
 using StudentsDataBaseProject.Properties;
+using Containers;
+using Autofac;
 
 namespace UI
 {
@@ -24,25 +26,15 @@ namespace UI
         public event EventHandler AddEvent;
         public event EventHandler UpdateEvent;
         public event EventHandler SaveDataEvent;
+        public event EventHandler SaveDataToDbEvent;
+        public event EventHandler ViewClosingEvent;
 
-        public MainForm()
+        public MainForm(IInteractionInformation interactionInformation)
         {
             InitializeComponent();
 
-            saveFileDialog.Filter = "Text files(*.txt)|*.txt|Excel files(*.xlsx)| *.xlsx| All files(*.*) | *.*";
-
-            studentsDataGridView.ColumnCount = 4;
-            studentsDataGridView.Columns[0].HeaderText = "ФИО";
-            studentsDataGridView.Columns[1].HeaderText = "Курс";
-            studentsDataGridView.Columns[2].HeaderText = "Группа";
-            studentsDataGridView.Columns[3].HeaderText = "Форма обучения";
-
-            studentsDataGridView.Columns[1].Width = 100;
-            studentsDataGridView.Columns[2].Width = 100;
-            studentsDataGridView.Columns[3].Width = 100;
-
-            //PresenterData presenter = new PresenterData(this, ContainerRegistretion.Container.Resolve<IInteractionInformation>()); //Почему Reso;ve работает только при подключенной Autofac?
-            PresenterData presenter = new PresenterData(this, new InteractionInformation());
+            PresenterData presenter = new PresenterData(this, interactionInformation);
+            //PresenterData presenter = new PresenterData(this, new InteractionInformation()); // Мы не ссылаемся на презентер, почему он не очищается
 
             _aboutForm = new AboutForm();
 
@@ -97,6 +89,16 @@ namespace UI
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveDataEvent.Invoke(sender, e);
+        }
+
+        private void saveDataToDbToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveDataToDbEvent.Invoke(sender, e);
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ViewClosingEvent.Invoke(sender, e);
         }
     }
 }

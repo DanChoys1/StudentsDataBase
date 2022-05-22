@@ -12,6 +12,8 @@ namespace UI
         event EventHandler AddEvent;
         event EventHandler UpdateEvent;
         event EventHandler SaveDataEvent;
+        event EventHandler SaveDataToDbEvent;
+        event EventHandler ViewClosingEvent;
 
         DataGridView DataGridView { get; }
         SaveFileDialog SaveFileDialog { get; }

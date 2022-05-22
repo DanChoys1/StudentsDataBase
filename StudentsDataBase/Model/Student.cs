@@ -4,15 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataBase
+namespace Database
 {
-    internal class Student
+    public class Student : DbRow
     {
-        public int Id { get; set; }
+        [Primary]
+        [AutoIncrement]
+        public Int64 Id { get; set; }
+        //Guid, uuid
         public string Name { get; set; }
-        public int Course { get; set; }
-        public int Group { get; set; }
+        public Int64 Course { get; set; }
+        public Int64 Group { get; set; }
         public string Form { get; set; }
+
+        public Student()
+        {}
 
         public Student(int id, string name, int course, int group, string form)
         {

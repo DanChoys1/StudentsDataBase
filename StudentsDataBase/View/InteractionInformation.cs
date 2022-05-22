@@ -79,6 +79,7 @@ namespace UI
             {
 
             }
+
             courseComboBox.Text = course.ToString();
             groupComboBox.Text = group.ToString();
             formComboBox.Text = form;
@@ -98,6 +99,18 @@ namespace UI
                     groupComboBox.SelectionStart = i + 1;
                 }
             }
+        }
+
+        public void Clear()
+        {
+            nameComboBox.Text = "";
+            surnameСomboBox.Text = "";
+            middleNameComboBox.Text = "";
+
+            courseComboBox.SelectedIndex = 0;
+            groupComboBox.Text = "";
+
+            formComboBox.SelectedIndex = 0;
         }
     }
 }

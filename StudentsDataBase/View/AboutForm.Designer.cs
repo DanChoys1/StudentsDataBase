@@ -38,13 +38,13 @@
             // 
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(635, 200);
+            this.label1.Size = new System.Drawing.Size(635, 270);
             this.label1.TabIndex = 0;
             this.label1.Text = resources.GetString("label1.Text");
             // 
             // okButton
             // 
-            this.okButton.Location = new System.Drawing.Point(554, 250);
+            this.okButton.Location = new System.Drawing.Point(554, 287);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(94, 29);
             this.okButton.TabIndex = 1;
@@ -55,7 +55,7 @@
             // checkBox
             // 
             this.checkBox.AutoSize = true;
-            this.checkBox.Location = new System.Drawing.Point(357, 250);
+            this.checkBox.Location = new System.Drawing.Point(357, 287);
             this.checkBox.Name = "checkBox";
             this.checkBox.Size = new System.Drawing.Size(191, 24);
             this.checkBox.TabIndex = 2;
@@ -66,10 +66,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(660, 291);
+            this.ClientSize = new System.Drawing.Size(660, 328);
             this.Controls.Add(this.checkBox);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AboutForm";
